@@ -1,0 +1,92 @@
+/* Base styles for the body, setting font, background, and centering content */
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%); /* Blue-purple gradient for a fresh look */
+    min-height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem; /* Padding for mobile viewports */
+    color: #333; /* Default text color */
+}
+/* Custom message box styles for displaying non-blocking notifications */
+.message-box {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    z-index: 1000; /* Ensure it's on top of other elements */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.5s ease-in-out; /* Smooth fade in/out effect */
+}
+/* Class to show the message box */
+.message-box.show {
+    opacity: 1;
+}
+/* Loading spinner styles */
+.loader {
+    border: 4px solid #f3f3f3; /* Light grey border */
+    border-top: 4px solid #3498db; /* Blue border for animation */
+    border-radius: 50%; /* Circular shape */
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite; /* Spin animation */
+    display: none; /* Hidden by default */
+}
+/* Class to show the loader */
+.loader.show {
+    display: block;
+}
+/* Keyframe animation for the spinning loader */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* Ensure responsive sizing for weather icons */
+.weather-icon {
+    width: 100px; /* Fixed width */
+    height: 100px; /* Fixed height */
+    object-fit: contain; /* Ensure the image fits within its container */
+}
+
+/* Media queries for responsive adjustments on smaller screens */
+@media (max-width: 768px) {
+    /* Adjust forecast grid to be more flexible on smaller screens */
+    .forecast-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    /* Reduce padding for forecast cards on smaller screens */
+    .forecast-card {
+        padding: 0.75rem;
+    }
+}
+
+/* Styles for search suggestions dropdown */
+.suggestions-container {
+    position: absolute; /* Position relative to its parent .search-section */
+    top: 100%; /* Position right below the input field */
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #e2e8f0; /* Light grey border */
+    border-radius: 0 0 8px 8px; /* Rounded corners only at the bottom */
+    max-height: 200px; /* Limit height for scrollability */
+    overflow-y: auto; /* Enable vertical scrolling */
+    z-index: 500; /* Ensure it appears above other elements but below message box */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+.suggestion-item {
+    padding: 10px 15px;
+    cursor: pointer; /* Indicate interactivity */
+    border-bottom: 1px solid #f0f4f8; /* Separator between items */
+}
+.suggestion-item:last-child {
+    border-bottom: none; /* No border for the last item */
+}
+.suggestion-item:hover {
+    background-color: #f0f4f8; /* Highlight on hover */
+}
